@@ -12,13 +12,29 @@ export class HouseholdService {
   }
 
   create(createHouseholdDTO: CreateHouseholdDto): Household {
-    const { email, contact, address } = createHouseholdDTO;
+    const {
+      email,
+      first,
+      last,
+      phone,
+      street1,
+      street2,
+      city,
+      state,
+      zip,
+    } = createHouseholdDTO;
     const id = short.generate();
     const household: Household = {
       id,
       email,
-      contact,
-      address,
+      first,
+      last,
+      phone,
+      street1,
+      street2,
+      city,
+      state,
+      zip,
     };
     this.households.push(household);
     return household;

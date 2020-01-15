@@ -1,21 +1,31 @@
-import { IsEmail, ValidateNested, IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsEmail,
+  ValidateNested,
+  IsString,
+  IsOptional,
+  IsPhoneNumber,
+  IsDefined,
+} from 'class-validator';
 
-class Contact {
+export class CreateHouseholdDto {
+  @IsEmail()
+  readonly email: string;
+
   @IsString()
   readonly first: string;
 
   @IsString()
   readonly last: string;
 
-  @IsString()
+  @IsPhoneNumber('US')
+  @IsOptional()
   readonly phone: string;
-}
 
-class Address {
   @IsString()
   readonly street1: string;
 
   @IsString()
+  @IsOptional()
   readonly street2: string;
 
   @IsString()
@@ -26,15 +36,4 @@ class Address {
 
   @IsString()
   readonly zip: string;
-}
-
-export class CreateHouseholdDto {
-  @IsEmail()
-  readonly email: string;
-
-  @ValidateNested()
-  readonly contact: Contact;
-
-  @ValidateNested()
-  readonly address: Address;
 }
