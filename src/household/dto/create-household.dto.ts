@@ -19,14 +19,14 @@ export class CreateHouseholdDto {
 
   @IsPhoneNumber('US')
   @IsOptional()
-  readonly phone: string;
+  readonly phone?: string;
 
   @IsString()
   readonly street1: string;
 
   @IsString()
   @IsOptional()
-  readonly street2: string;
+  readonly street2?: string;
 
   @IsString()
   readonly city: string;
