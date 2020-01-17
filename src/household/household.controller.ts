@@ -21,6 +21,11 @@ export class HouseholdController {
     return this.householdService.findAll();
   }
 
+  @Get(':id')
+  findOne(@Param('id') id): Household {
+    return this.householdService.findOne(id);
+  }
+
   @Post()
   @UsePipes(ValidationPipe)
   create(@Body() createHouseholdDto: CreateHouseholdDto): Household {

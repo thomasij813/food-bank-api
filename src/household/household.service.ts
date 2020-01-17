@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import Household from './household.interface';
 import * as short from 'short-uuid';
 import { CreateHouseholdDto } from './dto/create-household.dto';
@@ -9,6 +9,16 @@ export class HouseholdService {
 
   findAll(): Household[] {
     return this.households;
+  }
+
+  findOne(id: string): Household {
+    const found = this.households.filter(household => household.id === id);
+
+    if (found.length > 0) {
+      return found[0];
+    } else {
+      throw new HttpException(`Household with id ${id} not found`, HttpStatus.NOT_FOUND);
+    }
   }
 
   create(createHouseholdDTO: CreateHouseholdDto): Household {
