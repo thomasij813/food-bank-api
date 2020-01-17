@@ -11,8 +11,8 @@ import {
 } from '@nestjs/common';
 import { HouseholdService } from './household.service';
 import Household from './household.interface';
-import { CreateHouseholdDto } from './dto/create-household.dto';
-import { UpdateHouseholdDto } from './dto/update-household.dto';
+import { CreateHouseholdDto } from './dto/createHousehold.dto';
+import { UpdateHouseholdDto } from './dto/updateHousehold.dto';
 
 @Controller('household')
 export class HouseholdController {

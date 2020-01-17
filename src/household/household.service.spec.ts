@@ -1,5 +1,5 @@
 import { HouseholdService } from './household.service';
-import { CreateHouseholdDto } from './dto/create-household.dto';
+import { CreateHouseholdDto } from './dto/createHousehold.dto';
 
 describe('HouseholdService', () => {
   let service: HouseholdService;

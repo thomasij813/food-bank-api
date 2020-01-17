@@ -1,8 +1,8 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import Household from './household.interface';
 import * as short from 'short-uuid';
-import { CreateHouseholdDto } from './dto/create-household.dto';
-import { UpdateHouseholdDto } from './dto/update-household.dto';
+import { CreateHouseholdDto } from './dto/createHousehold.dto';
+import { UpdateHouseholdDto } from './dto/updateHousehold.dto';
 
 @Injectable()
 export class HouseholdService {
