@@ -2,6 +2,7 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import Household from './household.interface';
 import * as short from 'short-uuid';
 import { CreateHouseholdDto } from './dto/create-household.dto';
+import { UpdateHouseholdDto } from './dto/update-household.dto';
 
 @Injectable()
 export class HouseholdService {
@@ -48,6 +49,14 @@ export class HouseholdService {
     };
     this.households.push(household);
     return household;
+  }
+
+  update(id: string, updateHouseholdDto: UpdateHouseholdDto): void {
+    const household = this.findOne(id);
+
+    for (const key in updateHouseholdDto) {
+      household[key] = updateHouseholdDto[key];
+    }
   }
 
   delete(id: string): void {

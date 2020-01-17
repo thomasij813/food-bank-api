@@ -7,10 +7,12 @@ import {
   Body,
   Delete,
   Param,
+  Patch,
 } from '@nestjs/common';
 import { HouseholdService } from './household.service';
 import Household from './household.interface';
 import { CreateHouseholdDto } from './dto/create-household.dto';
+import { UpdateHouseholdDto } from './dto/update-household.dto';
 
 @Controller('household')
 export class HouseholdController {
@@ -30,6 +32,12 @@ export class HouseholdController {
   @UsePipes(ValidationPipe)
   create(@Body() createHouseholdDto: CreateHouseholdDto): Household {
     return this.householdService.create(createHouseholdDto);
+  }
+
+  @Patch(':id')
+  @UsePipes(ValidationPipe)
+  udpate(@Param('id') id, @Body() updateHouseholdDto: UpdateHouseholdDto): void {
+    return this.householdService.update(id, updateHouseholdDto);
   }
 
   @Delete(':id')
