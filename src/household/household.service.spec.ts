@@ -40,4 +40,24 @@ describe('HouseholdService', () => {
       expect(service.findAll()).toEqual([household]);
     });
   });
+
+  describe('delete', () => {
+    it('Should delete a household by id', () => {
+      const createHouseholdDto = {
+        email: 'thomasij813@gmail.com',
+        first: 'Thomas',
+        last: 'Johnson',
+        street1: '106 14th Ave E',
+        city: 'Seattle',
+        state: 'WA',
+        zip: '98112',
+      };
+
+      const household = service.create(createHouseholdDto);
+
+      const { id } = household;
+      service.delete(id);
+      expect(service.findAll().length).toBe(0);
+    })
+  })
 });
