@@ -5,6 +5,8 @@ import {
   UsePipes,
   ValidationPipe,
   Body,
+  Delete,
+  Param,
 } from '@nestjs/common';
 import { HouseholdService } from './household.service';
 import Household from './household.interface';
@@ -23,5 +25,10 @@ export class HouseholdController {
   @UsePipes(ValidationPipe)
   create(@Body() createHouseholdDto: CreateHouseholdDto): Household {
     return this.householdService.create(createHouseholdDto);
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id): void {
+    return this.householdService.delete(id);
   }
 }

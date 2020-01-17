@@ -5,7 +5,7 @@ import { CreateHouseholdDto } from './dto/create-household.dto';
 
 @Injectable()
 export class HouseholdService {
-  private readonly households: Household[] = [];
+  private households: Household[] = [];
 
   findAll(): Household[] {
     return this.households;
@@ -38,5 +38,9 @@ export class HouseholdService {
     };
     this.households.push(household);
     return household;
+  }
+
+  delete(id: string): void {
+    this.households = this.households.filter(household => household.id !== id);
   }
 }
