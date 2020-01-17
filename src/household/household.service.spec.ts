@@ -62,6 +62,21 @@ describe('HouseholdService', () => {
 
     it('Should throw an error if no houshold is found', () => {
       expect(() => service.findOne('NOT FOUND')).toThrowError();
-    })
+    });
+  });
+
+  describe('update', () => {
+    it('Should update a household by id', () => {
+      const household = service.create(createHouseholdDto);
+      const { id } = household;
+      const newEmail = 'thomasij813@yahoo.com';
+
+      const updateHouseholdDto = {
+        email: newEmail
+      };
+
+      service.update(id, updateHouseholdDto);
+      expect(service.findOne(id).email).toEqual(newEmail);
+    });
   });
 });
