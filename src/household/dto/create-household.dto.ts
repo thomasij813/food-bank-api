@@ -1,10 +1,8 @@
 import {
   IsEmail,
-  ValidateNested,
   IsString,
   IsOptional,
   IsPhoneNumber,
-  IsDefined,
 } from 'class-validator';
 
 export class CreateHouseholdDto {
