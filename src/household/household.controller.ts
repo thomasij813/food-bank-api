@@ -21,7 +21,7 @@ export class HouseholdController {
 
   @Get()
   @UsePipes(ValidationPipe)
-  findAll(@Query() dto: UpdateHouseholdDto): Household[] {
+  findAll(@Query() dto?: UpdateHouseholdDto): Household[] {
     return this.householdService.find(dto);
   }
 

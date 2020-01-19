@@ -22,9 +22,17 @@ describe('HouseholdService', () => {
     expect(service).toBeDefined();
   });
 
-  describe('findAll', () => {
+  describe('find', () => {
     it('Should return an array', () => {
-      expect(service.findAll()).toEqual([]);
+      expect(service.find()).toEqual([]);
+    });
+
+    it('Should find a household when query params are provided', () => {
+      const household = service.create(createHouseholdDto);
+      const found = service.find({ email: createHouseholdDto.email })
+      expect(found.length).toBe(1);
+      expect(found[0].id).toEqual(household.id);
+      expect(service.find({email: 'not found'})).toEqual([]);
     });
   });
 
@@ -38,7 +46,7 @@ describe('HouseholdService', () => {
         expect(household).toHaveProperty(key, val);
       });
 
-      expect(service.findAll()).toEqual([household]);
+      expect(service.find()).toEqual([household]);
     });
   });
 
@@ -48,7 +56,7 @@ describe('HouseholdService', () => {
 
       const { id } = household;
       service.delete(id);
-      expect(service.findAll().length).toBe(0);
+      expect(service.find().length).toBe(0);
     });
   });
 

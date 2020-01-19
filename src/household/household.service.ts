@@ -8,7 +8,7 @@ import { UpdateHouseholdDto } from './dto/updateHousehold.dto';
 export class HouseholdService {
   private households: Household[] = [];
 
-  find(dto: UpdateHouseholdDto): Household[] {
+  find(dto?: UpdateHouseholdDto): Household[] {
     let found: Household[] = [...this.households];
 
     for(const key in dto) {
