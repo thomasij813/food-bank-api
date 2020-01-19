@@ -8,8 +8,15 @@ import { UpdateHouseholdDto } from './dto/updateHousehold.dto';
 export class HouseholdService {
   private households: Household[] = [];
 
-  findAll(): Household[] {
-    return this.households;
+  find(dto: UpdateHouseholdDto): Household[] {
+    let found: Household[] = [...this.households];
+
+    for(const key in dto) {
+      let val = dto[key].toLowerCase();
+      found = found.filter(household => household[key].toLowerCase().includes(val));
+    }
+
+    return found;
   }
 
   findOne(id: string): Household {
@@ -20,6 +27,17 @@ export class HouseholdService {
     } else {
       throw new HttpException(`Household with id ${id} not found`, HttpStatus.NOT_FOUND);
     }
+  }
+
+  search(dto: UpdateHouseholdDto): Household[] {
+    let found: Household[] = [...this.households];
+
+    for(const key in dto) {
+      let val = dto[key].toLowerCase();
+      found = found.filter(household => household[key].toLowerCase().includes(val));
+    }
+
+    return found;
   }
 
   create(createHouseholdDTO: CreateHouseholdDto): Household {

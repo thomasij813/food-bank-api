@@ -8,6 +8,7 @@ import {
   Delete,
   Param,
   Patch,
+  Query,
 } from '@nestjs/common';
 import { HouseholdService } from './household.service';
 import Household from './household.interface';
@@ -19,8 +20,9 @@ export class HouseholdController {
   constructor(private readonly householdService: HouseholdService) {}
 
   @Get()
-  findAll(): Household[] {
-    return this.householdService.findAll();
+  @UsePipes(ValidationPipe)
+  findAll(@Query() dto: UpdateHouseholdDto): Household[] {
+    return this.householdService.find(dto);
   }
 
   @Get(':id')
